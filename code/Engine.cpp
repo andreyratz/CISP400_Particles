@@ -78,8 +78,8 @@ void Engine::draw() {
 	m_Window.clear();
 	for (size_t i {0}; i < m_particles.size(); i++) {
 		m_Window.draw(m_particles.at(i));
-		m_Window.display();
 	}
+    m_Window.display();
 }
 
 
