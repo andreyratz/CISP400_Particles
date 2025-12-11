@@ -20,7 +20,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 	double theta = (M_PI/2) - 0.5;
 	double dTheta = 2 * M_PI / (numPoints - 1);
 
-	for (int j {0}; j <= numPoints; j++) {
+	for (int j {0}; j < numPoints; j++) {
 		int r = rand() % (80 + 1 - 20) + 20;
 		double dx = r * cos(theta);
 		double dy = r * sin(theta);

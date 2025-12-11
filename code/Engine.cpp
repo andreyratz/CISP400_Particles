@@ -23,7 +23,6 @@ void Engine::run() {
 	while(m_Window.isOpen()) {
 		clock.restart();
 		sf::Time time = clock.getElapsedTime();
-
 		input();
 		update(time.asSeconds());
 		draw();
