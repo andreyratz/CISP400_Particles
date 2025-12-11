@@ -72,12 +72,7 @@ namespace Matrices
     {
         public:
         ///Call the parent constructor to create a 2x2 matrix
-		RotationMatrix(double theta) : Matrix(2, 2) {
-			a.at(0).at(0) = cos(theta);
-			a.at(0).at(1) = -sin(theta);
-			a.at(1).at(0) = sin(theta);
-			a.at(1).at(1) = cos(theta);
-	    }
+		RotationMatrix(double theta);	
         ///Then assign each element as follows:
         /*
         cos(theta)  -sin(theta)
@@ -92,12 +87,7 @@ namespace Matrices
     class ScalingMatrix : public Matrix
     {
     	public:
-		ScalingMatrix(double c) : Matrix(2,2) {
-			a.at(0).at(0) = c;
-			a.at(0).at(1) = 0;
-			a.at(1).at(0) = 0;
-			a.at(1).at(1) = c;
-		}
+			ScalingMatrix(double c);
             	///Call the parent constructor to create a 2x2 matrix
             	///Then assign each element as follows:
             	/*
@@ -122,18 +112,7 @@ namespace Matrices
 		///paramaters are xShift, yShift, and nCols
 		///nCols represents the number of columns in the matrix
 		///where each column contains one (x,y) coordinate pair
-        TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2,nCols) {
-			for (int i = 0; i < getRows(); i++) {
-				for (int j = 0; j < getCols(); j++) {
-					if (i == 0) {
-						a.at(i).at(j) = xShift;
-					}
-					else {
-						a.at(i).at(j) = yShift;
-					}
-				}
-			}
-		}
+        TranslationMatrix(double xShift, double yShift, int nCols);
     };
 }
 
