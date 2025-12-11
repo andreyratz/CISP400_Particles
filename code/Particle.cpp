@@ -10,7 +10,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 	m_cartesianPlane.setSize({ target.getSize().x, (-1.0) * target.getSize().y });
 	m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 	m_vx = rand() % 401 + 100;
-	if (rand() % 2 != 0) { m_vx * -1; }
+	if (rand() % 2 != 0) { m_vx *= -1; }
 	m_vy = rand() % 401 + 100;
 	m_color2.r = rand() % 256;
 	m_color2.g = rand() % 256;
