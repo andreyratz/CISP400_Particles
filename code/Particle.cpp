@@ -3,7 +3,7 @@
 #include <SFML/Graphics/PrimitiveType.hpp>
 
 Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
-	: m_A(2, numPoints), m_ttl(TTL), m_numPoints(numPoints), m_color1(sf::Color::White) {
+    : m_ttl(TTL), m_numPoints(numPoints), m_color1(sf::Color::White), m_A(2, numPoints) {
 
 	m_radiansPerSec = ((float)rand() / (RAND_MAX)) * M_PI;
 	m_cartesianPlane.setCenter({ 0,0 });
