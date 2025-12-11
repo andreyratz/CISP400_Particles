@@ -2,25 +2,37 @@
 #include "Matrices.h"
 #include <SFML/Graphics/PrimitiveType.hpp>
 
-Particle::Particle(RenderTarget& target, int numPoints, Vecotr2i mouseClickPosition)
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
 	: m_A(2, numPoints), m_ttl(TTL), m_numPoints(numPoints), m_color1(sf::Color::White) {
 
-		m_radiansPerSec = ((float)rand() / (RAND_MAX)) * PI;
-		m_cartesianPlane.setCenter(0,0);
-		m_cartesianPlane.setSize(tartget.getSize().x, (-1.0) * target.getSize().y);
-		m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
-		m_vx = rand() % 401 + 100;
-		if (rand() % 2 != 0) { m_vx * -1; }
-		m_vy = rand() % 401 + 100;
-		m_color2.r = rand % 256;
-		m_color2.g = rand % 256;
-		m_color2.b = rand % 256;
-		m_color2.a = 175;
+	m_radiansPerSec = ((float)rand() / (RAND_MAX)) * M_PI;
+	m_cartesianPlane.setCenter({ 0,0 });
+	m_cartesianPlane.setSize({ target.getSize().x, (-1.0) * target.getSize().y });
+	m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
+	m_vx = rand() % 401 + 100;
+	if (rand() % 2 != 0) { m_vx * -1; }
+	m_vy = rand() % 401 + 100;
+	m_color2.r = rand() % 256;
+	m_color2.g = rand() % 256;
+	m_color2.b = rand() % 256;
+	m_color2.a = 175;
 
-		double theta = (rand() % ((PI/2) + 1));
-		dTheta = 2 * PI / (numPoints - 1);
+	double theta = (M_PI/2) - 0.5;
+	double dTheta = 2 * M_PI / (numPoints - 1);
 
-		for (int 
+	for (int j {0}; j <= numPoints; j++) {
+		int r = rand() % (80 + 1 - 20) + 20;
+		double dx = r * cos(theta);
+		double dy = r * sin(theta);
+
+		m_A(0,j) = m_centerCoordinate.x + dx;
+		m_A(1,j) = m_centerCoordinate.y + dy;
+
+		theta += dTheta;
+	}
+}
+
+
 
 
 bool Particle::almostEqual(double a, double b, double eps)
