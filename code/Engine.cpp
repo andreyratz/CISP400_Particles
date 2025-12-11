@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.h"
+#include "Particle.h"
 #include <ctime>
 
 using namespace sf;
