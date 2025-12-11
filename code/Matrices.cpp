@@ -11,7 +11,7 @@ namespace Matrices {
 		cols = _cols;
 
 		a.resize(rows);
-		for (int i = 0; i < a.size(); i++) {
+		for (size_t i = 0; i < a.size(); i++) {
 			a[i].resize(cols);
 		}
 
