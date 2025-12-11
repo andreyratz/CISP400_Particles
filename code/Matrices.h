@@ -1,6 +1,5 @@
 #ifndef MATRIX_H_INCLUDED
 #define MATRIX_H_INCLUDED
-
 #include <cmath>
 #include <iostream>
 #include <vector>
@@ -28,6 +27,7 @@ namespace Matrices
 
             ///Assign element at row i, column j
             ///usage:  a(i,j) = x;
+
             double& operator()(int i, int j)
             {
                 return a.at(i).at(j);
@@ -71,46 +71,69 @@ namespace Matrices
     class RotationMatrix : public Matrix
     {
         public:
-            ///Call the parent constructor to create a 2x2 matrix
-            ///Then assign each element as follows:
-            /*
-            cos(theta)  -sin(theta)
-            sin(theta)   cos(theta)
-            */
-            ///theta represents the angle of rotation in radians, counter-clockwise
-            RotationMatrix(double theta);
+        ///Call the parent constructor to create a 2x2 matrix
+		RotationMatrix(double theta) : Matrix(2, 2) {
+			a.at(0).at(0) = cos(theta);
+			a.at(0).at(1) = -sin(theta);
+			a.at(1).at(0) = sin(theta);
+			a.at(1).at(1) = cos(theta);
+	    }
+        ///Then assign each element as follows:
+        /*
+        cos(theta)  -sin(theta)
+        sin(theta)   cos(theta)
+        */
+        ///theta represents the angle of rotation in radians, counter-clockwise
+        
     };
 
     ///2D scaling matrix
     ///usage:  A = S * A expands or contracts A by the specified scaling factor
     class ScalingMatrix : public Matrix
     {
-        public:
-            ///Call the parent constructor to create a 2x2 matrix
-            ///Then assign each element as follows:
-            /*
-            scale   0
-            0       scale
-            */
-            ///scale represents the size multiplier
-            ScalingMatrix(double scale);
+    	public:
+		ScalingMatrix(double c) : Matrix(2,2) {
+			a.at(0).at(0) = c;
+			a.at(0).at(1) = 0;
+			a.at(1).at(0) = 0;
+			a.at(1).at(1) = c;
+		}
+            	///Call the parent constructor to create a 2x2 matrix
+            	///Then assign each element as follows:
+            	/*
+            	scale   0
+            	0       scale
+        	*/
+            	///scale represents the size multiplier
     };
 
-    ///2D Translation matrix
-    ///usage:  A = T + A will shift all coordinates of A by (xShift, yShift)
+		///2D Translation matrix
+		///usage:  A = T + A will shift all coordinates of A by (xShift, yShift)
     class TranslationMatrix : public Matrix
     {
         public:
-            ///Call the parent constructor to create a 2xn matrix
-            ///Then assign each element as follows:
-            /*
-            xShift  xShift  xShift  ...
-            yShift  yShift  yShift  ...
-            */
-            ///paramaters are xShift, yShift, and nCols
-            ///nCols represents the number of columns in the matrix
-            ///where each column contains one (x,y) coordinate pair
-            TranslationMatrix(double xShift, double yShift, int nCols);
+	
+		///Call the parent constructor to create a 2xn matrix
+        	///Then assign each element as follows:
+            	/*
+            	xShift  xShift  xShift  ...
+		ft  yShift  yShift  ...
+            	*/
+		///paramaters are xShift, yShift, and nCols
+		///nCols represents the number of columns in the matrix
+		///where each column contains one (x,y) coordinate pair
+        TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2,nCols) {
+			for (int i = 0; i < getRows(); i++) {
+				for (int j = 0; j < getCols(); j++) {
+					if (i == 0) {
+						a.at(i).at(j) = xShift;
+					}
+					else {
+						a.at(i).at(j) = yShift;
+					}
+				}
+			}
+		}
     };
 }
 
