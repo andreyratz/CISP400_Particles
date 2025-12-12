@@ -20,8 +20,7 @@ void Engine::run() {
 	cout << "Unit tests complete. Starting engine...\n";
 
 	while(m_Window.isOpen()) {
-		clock.restart();
-		sf::Time time = clock.getElapsedTime();
+		sf::Time time = clock.restart();
 		input();
 		update(time.asSeconds());
 		draw();
